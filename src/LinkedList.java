@@ -29,7 +29,7 @@ public class LinkedList {
 		return false;
 	}
 	
-	public void insertWordMeaning(String wordMeaning){
+	public void addToDictionary(String wordMeaning){
 		//implements insertion sort
 		if(isFull()){
 			System.out.println("Error - Cannot insert the item");
@@ -69,7 +69,44 @@ public class LinkedList {
 		}
 	}
 	
-	public void displayList(){
+	public String lookUp(String searchValue){
+		Node currentPtr = this.HEAD;
+		while(currentPtr != null){
+			if(currentPtr.getWordMeaning().split("\\s")[0].equals(searchValue)){
+				int index = this.locate(searchValue);
+				return "Found at index: " +Integer.toString(index)+"\n"+currentPtr.getWordMeaning();
+			}
+			currentPtr = currentPtr.getNextWordMeaning();
+		}
+			return "Not Found";
+	}
+	
+	public int locate(String element){
+		int index = 0;
+		if(isEmpty()){
+			System.out.println("The list is empty");
+		}else{
+			Node currentPtr = this.HEAD;
+			while(currentPtr != null){
+				if(currentPtr.getWordMeaning().split("\\s")[0].equals(element)){
+					return index;
+				}
+				index++;
+				currentPtr = currentPtr.getNextWordMeaning();
+			}
+		}
+		return -1;
+	}
+	
+	public void displayWordsInDictionary(){
+		Node currNode = HEAD;
+		while(currNode != null){
+			currNode.displayWord();
+			currNode = currNode.getNextWordMeaning();
+		}
+	}
+	
+	public void displayDictionary(){
 		Node currNode = HEAD;
 		while(currNode != null){
 			currNode.display();
