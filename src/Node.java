@@ -32,6 +32,7 @@ public class Node {
 	public void display(){
 		System.out.println(this.word_meaning);
 	}
+	
 	public void displayWord(){
 		System.out.println(this.word_meaning.split("\\s")[0]);
 	}

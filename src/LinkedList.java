@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
+import gui.fileChooser;
 
 public class LinkedList {
 	
@@ -27,6 +33,26 @@ public class LinkedList {
 			return true;
 		}
 		return false;
+	}
+	public void loadAndSortDataset(){
+		long StartTime =0;
+		try{
+			fileChooser file = new fileChooser();
+			FileInputStream fstream = new FileInputStream(file.openFile());
+			StartTime = System.currentTimeMillis();
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			while ((strLine = br.readLine()) != null){
+				this.addToDictionary(strLine);
+			}
+			in.close();
+		}catch (Exception e){
+			System.err.println("Error: " + e.getMessage());
+		}
+		long EndTime = System.currentTimeMillis();
+		  
+		System.out.println("Linked List Inserstion Sort Took: "+(EndTime - StartTime)+" milliseconds\n");
 	}
 	
 	public void addToDictionary(String wordMeaning){
@@ -66,6 +92,15 @@ public class LinkedList {
 				}
 			}
 			length++;
+		}
+	}
+	
+	public void addWord(String word, String partOfSpeech, String definition){
+		if(this.locate(word) != -1){
+			System.out.println("Sorry, the word "+word+" already exists!");
+		}else{
+			String dictionaryEntry = word+"\t"+partOfSpeech+"\t"+definition;
+			this.addToDictionary(dictionaryEntry);
 		}
 	}
 	
