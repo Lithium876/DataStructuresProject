@@ -22,26 +22,17 @@ The dictionary should allow users to conduct the following operations:
    * Allow the user to enter a word and search for same in the both structures. If found, output the definition and part of speech and       the iteration/index where it was found. If not found output an appropriate message.
    * Calculate and output how long it takes to find the word which both data structures.
   
-iv. Add a new word to the list
-
-  a. This option prompts the user for the word to be added, its definition and part of speech and then adds it in its correct position        in both data structures.
+4. Add a new word to the list
+    * This option prompts the user for the word to be added, its definition and part of speech and then adds it in its correct position        in both data structures.
+    * The program should ensure that there are no duplicate words in the dictionary
+    * Calculate and output how long it takes to add the word with each data structure
   
-  b. The program should ensure that there are no duplicate words in the dictionary
+5. Print all words in dataset
+    * The program should output all words, their definition and part of speech for each data structure.
+    * Calculate and output how long it takes to output all words with each data structures
   
-  c. Calculate and output how long it takes to add the word with each data structure
-  
-v. Print all words in dataset
-
-  a. The program should output all words, their definition and part of speech for each data structure.
-  
-  b. Calculate and output how long it takes to output all words with each data structures
-  
-vi. Validate a sentence
-
-  a. Prompts the user to enter a sentence
-  
-  b. Parse the sentence to ensure all words exist in the dictionary
-  
-  c. If a word does not exist, ask the user if they would like to add it to the database of words
-  
-  d. Calculate and output how long it takes to validate the sentence using both data structures
+6. Validate a sentence
+   * Prompts the user to enter a sentence
+   * Parse the sentence to ensure all words exist in the dictionary
+   * If a word does not exist, ask the user if they would like to add it to the database of words
+   * Calculate and output how long it takes to validate the sentence using both data structures
