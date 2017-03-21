@@ -12,20 +12,20 @@ The dictionary should allow users to conduct the following operations:
 
 1. Parse and load given dataset
 
-  a. A text or html file will be provided for students to parse and load data into the two selected data structures
+  * A text or html file will be provided for students to parse and load data into the two selected data structures
   
-  b. Calculate and output how long it takes to load the data into both data structures
+  *. Calculate and output how long it takes to load the data into both data structures
   
 2. Sort the dataset
 
-  ..1. Use an efficient algorithm to arrange the words in ascending order
+  *. Use an efficient algorithm to arrange the words in ascending order
   
-  ..2. Calculate and output how long it takes to sort both algorithms
+  *. Calculate and output how long it takes to sort both algorithms
   
 3. Search for a word
-  a. Allow the user to enter a word and search for same in the both structures. If found, output the definition and part of speech and       the iteration/index where it was found. If not found output an appropriate message.
+  *. Allow the user to enter a word and search for same in the both structures. If found, output the definition and part of speech and       the iteration/index where it was found. If not found output an appropriate message.
   
-  b. Calculate and output how long it takes to find the word which both data structures.
+  *. Calculate and output how long it takes to find the word which both data structures.
   
 iv. Add a new word to the list
 
