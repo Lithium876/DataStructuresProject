@@ -10,19 +10,19 @@ A Dictionary is a book or electronic resource that lists the words of a language
 
 The dictionary should allow users to conduct the following operations:
 
-i. Parse and load given dataset
+1. Parse and load given dataset
 
   a. A text or html file will be provided for students to parse and load data into the two selected data structures
   
   b. Calculate and output how long it takes to load the data into both data structures
   
-ii. Sort the dataset
+2. Sort the dataset
 
-  a. Use an efficient algorithm to arrange the words in ascending order
+  ..1. Use an efficient algorithm to arrange the words in ascending order
   
-  b. Calculate and output how long it takes to sort both algorithms
+  ..2. Calculate and output how long it takes to sort both algorithms
   
-iii. Search for a word
+3. Search for a word
   a. Allow the user to enter a word and search for same in the both structures. If found, output the definition and part of speech and       the iteration/index where it was found. If not found output an appropriate message.
   
   b. Calculate and output how long it takes to find the word which both data structures.
