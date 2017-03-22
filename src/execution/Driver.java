@@ -57,14 +57,13 @@ public class Driver {
 			System.out.println("**************************************************************");
 			System.out.println("*                      Data Dictionary                       *");
 			System.out.println("**************************************************************");
-			System.out.println("*            Press 1 to LOAD the Data set                    *");
-			System.out.println("*            Press 2 to Sort the Data set(LinkedList)        *");
-			System.out.println("*            Press 3 to Add words to dictionary              *");
-			System.out.println("*            Press 4 to search for a word                    *");
-			System.out.println("*            Press 5 to view the length of the list          *");
-			System.out.println("*            Press 6 to enter a sentence for validation      *");
-			System.out.println("*            Press 7 to Display the Dictionary               *");
-			System.out.println("*            Press 8 to Exit System                          *");
+			System.out.println("*            Press 1 to Sort the Data set(LinkedList)        *");
+			System.out.println("*            Press 2 to Add words to dictionary              *");
+			System.out.println("*            Press 3 to search for a word                    *");
+			System.out.println("*            Press 4 to view the length of the list          *");
+			System.out.println("*            Press 5 to enter a sentence for validation      *");
+			System.out.println("*            Press 6 to Display the Dictionary               *");
+			System.out.println("*            Press 7 to Exit System                          *");
 			System.out.println("**************************************************************");
 			option=input.nextInt();
 			
