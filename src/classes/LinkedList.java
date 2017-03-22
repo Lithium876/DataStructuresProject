@@ -1,5 +1,4 @@
 package classes;
-
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -7,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import gui.FileChooser;
+import gui.fileChooser;
 
 public class LinkedList {
 	
@@ -21,7 +20,7 @@ public class LinkedList {
 	
 	@SuppressWarnings("unused")
 	public boolean isFull(){
-	    Node new_node = new Node("DAta","DAta2","DAta3");
+	    Node new_node = new Node();
 	    if(new_node != null){
 	        return false;
 	    }
@@ -38,11 +37,12 @@ public class LinkedList {
 		}
 		return false;
 	}
-	public void loadAndSortDataset(){
+	public void loadDataset(){
+	
 		long StartTime =0;
 		long EndTime =0;
 		try{
-			FileChooser file = new FileChooser();
+			fileChooser file = new fileChooser();
 			FileInputStream fstream = new FileInputStream(file.openFile());
 			StartTime = System.nanoTime();
 			DataInputStream in = new DataInputStream(fstream);
@@ -129,6 +129,9 @@ public class LinkedList {
 			if(isEmpty()){
 				this.HEAD = newWordMeaning;
 			}
+			if(this.locate(newWordMeaning.getWord()) != -1){
+				System.out.println("Sorry! the word '"+newWordMeaning.getWord()+"' already exists");
+			}
 			else{
 				if(this.HEAD.getWord().compareTo(word)>0){
 					newWordMeaning.setNextWordMeaning(this.HEAD);
@@ -151,10 +154,11 @@ public class LinkedList {
 				if(insert==false){
 						temp.setNextWordMeaning(newWordMeaning);
 				}
+				length++;
+				EndTime = System.nanoTime();
+				System.out.println("Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds");
 			}
-			length++;
-			EndTime = System.nanoTime();
-			System.out.println("Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds");
+			
 		}
 	}
 	
@@ -192,8 +196,8 @@ public class LinkedList {
 			}
 		}
 		return -1;
-		
 	}
+	
 	public void validateSentence(String sentence){
 		long StartTime = 0;
 		long EndTime = 0;
@@ -217,7 +221,7 @@ public class LinkedList {
 			for(j=0;j<arr.size();j++){
 				System.out.println("'"+arr.get(j)+"' was not found in the dictionary, would you like to add it to the database of words?\n y/n");
 				String respond = in.nextLine();
-				if(respond.equalsIgnoreCase("y")){
+				if(respond.equals("y")){
 					System.out.println("Enter part of speech: ");
 					String partOfSpeech = in.nextLine();
 					System.out.println("Enter Meaning: ");
@@ -226,7 +230,6 @@ public class LinkedList {
 				}
 			}
 		}
-		in.close();
 	}
 	
 	public void displayWordsInDictionary(){
@@ -250,4 +253,3 @@ public class LinkedList {
 		System.out.println("Displaying all words, part of speech and defintion in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
 	}
 }
-

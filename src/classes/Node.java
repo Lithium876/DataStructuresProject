@@ -1,17 +1,20 @@
 package classes;
 
-
 public class Node {
 	private String word;
 	private String partOfSpeech;
 	private String meaning;
 	private Node nextWordMeaning;
+	protected Node leftSubTree;
+	protected Node rightSubTree;
 	
 	public Node(){
 		this.word = "";
 		this.partOfSpeech = "";
 		this.meaning = "";
 		this.nextWordMeaning = null;
+		this.leftSubTree = null;
+		this.rightSubTree = null;
 	}
 	
 	public Node(String word, String partOfSpeech, String meaning) {
@@ -19,6 +22,8 @@ public class Node {
 		this.partOfSpeech = partOfSpeech;
 		this.meaning = meaning;
 		this.nextWordMeaning = null;
+		this.leftSubTree = null;
+		this.rightSubTree = null;
 	}
 	
 	public String getWord() {
@@ -43,6 +48,22 @@ public class Node {
 
 	public void setMeaning(String meaning) {
 		this.meaning = meaning;
+	}
+	
+	public void setRigtSubTree(Node rightSubTree){
+		this.rightSubTree = rightSubTree;
+	}
+	
+	public Node getRightSubTree(){
+		return rightSubTree;
+	}
+	
+	public void setLeftSubTree(Node leftSubTree){
+		this.leftSubTree = leftSubTree;
+	}
+	
+	public Node getLeftSubTree(){
+		return leftSubTree;
 	}
 
 	public Node getNextWordMeaning() {
