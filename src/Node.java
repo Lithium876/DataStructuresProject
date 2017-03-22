@@ -1,39 +1,61 @@
 
 public class Node {
-	private String word_meaning;
+	private String word;
+	private String partOfSpeech;
+	private String meaning;
 	private Node nextWordMeaning;
 	
 	public Node(){
-		word_meaning = "";
-		nextWordMeaning = null;
+		this.word = "";
+		this.partOfSpeech = "";
+		this.meaning = "";
+		this.nextWordMeaning = null;
 	}
 	
-	public Node(String word_meaning){
-		this.word_meaning = word_meaning;
-		nextWordMeaning = null;
+	public Node(String word, String partOfSpeech, String meaning) {
+		this.word = word;
+		this.partOfSpeech = partOfSpeech;
+		this.meaning = meaning;
+		this.nextWordMeaning = null;
 	}
 	
-	public void setWordMeaning(String word_meaning){
-		this.word_meaning =  word_meaning;
+	public String getWord() {
+		return word;
 	}
-	
-	public String getWordMeaning(){
-		return word_meaning;
+
+	public void setWord(String word) {
+		this.word = word;
 	}
-	
-	public void setNextWordMeaing(Node nextWordMeaning){
+
+	public String getPartOfSpeech() {
+		return partOfSpeech;
+	}
+
+	public void setPartOfSpeech(String partOfSpeech) {
+		this.partOfSpeech = partOfSpeech;
+	}
+
+	public String getMeaning() {
+		return meaning;
+	}
+
+	public void setMeaning(String meaning) {
+		this.meaning = meaning;
+	}
+
+	public Node getNextWordMeaning() {
+		return nextWordMeaning;
+	}
+
+	public void setNextWordMeaning(Node nextWordMeaning) {
 		this.nextWordMeaning = nextWordMeaning;
 	}
 	
-	public Node getNextWordMeaning(){
-		return nextWordMeaning;
-	}
-	
 	public void display(){
-		System.out.println(this.word_meaning);
+		System.out.println(this.word+"\t"+this.partOfSpeech+"\t"+this.meaning);
 	}
 	
 	public void displayWord(){
-		System.out.println(this.word_meaning.split("\\s")[0]);
+		System.out.println(this.word);
 	}
 }

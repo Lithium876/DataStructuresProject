@@ -19,7 +19,7 @@ public class LinkedList {
 	
 	@SuppressWarnings("unused")
 	public boolean isFull(){
-	    Node new_node = new Node("DAta");
+	    Node new_node = new Node("DAta","DAta2","DAta3");
 	    if(new_node != null){
 	        return false;
 	    }
@@ -47,7 +47,8 @@ public class LinkedList {
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
 			while ((strLine = br.readLine()) != null){
-				this.Dictionary(strLine);
+				String words[] = strLine.split("\\t");
+				this.Dictionary(words[0], words[1], words[2]);
 			}
 			in.close();
 		}catch (Exception e){
@@ -57,11 +58,12 @@ public class LinkedList {
 		System.out.println("Loading dataset from file to linked list took: "+(EndTime - StartTime)+" nanoseconds");
 	}
 	
-	public void Dictionary(String wordMeaning){
+	public void Dictionary(String word, String partOfSpeech, String meaning){
 		if(isFull()){
 			System.out.println("Error - Cannot insert the item");
 		}else{
-			Node newWordMeaning = new Node(wordMeaning);
+			word = word.replaceAll("^\\W", "");
+			Node newWordMeaning = new Node(word, partOfSpeech, meaning );
 			Node temp = new Node();
 			if(isEmpty()){
 				this.HEAD = newWordMeaning;
@@ -71,7 +73,7 @@ public class LinkedList {
 			    while ((temp.getNextWordMeaning() != null)) {
 			           temp = temp.getNextWordMeaning();
 			    }
-			    temp.setNextWordMeaing(newWordMeaning);
+			    temp.setNextWordMeaning(newWordMeaning);
 			}
 			length++;
 		}
@@ -89,10 +91,16 @@ public class LinkedList {
 	        while (swapDone) {
 	        	swapDone = false;
 	            while (current != null) {
-	            	if(current.getNextWordMeaning() != null && current.getWordMeaning().compareTo(current.getNextWordMeaning().getWordMeaning()) >0){
-	                    String temp = current.getWordMeaning();
-	                    current.setWordMeaning(current.getNextWordMeaning().getWordMeaning());
-	                    current.getNextWordMeaning().setWordMeaning(temp);
+	            	if(current.getNextWordMeaning() != null && current.getWord().compareToIgnoreCase(current.getNextWordMeaning().getWord()) >0){
+	                    String word = current.getWord();
+	                    String partOfSpeech = current.getPartOfSpeech();
+	                    String meaning = current.getMeaning();
+	                    current.setWord(current.getNextWordMeaning().getWord());
+	                    current.setPartOfSpeech(current.getNextWordMeaning().getPartOfSpeech());
+	                    current.setMeaning(current.getNextWordMeaning().getMeaning());
+	                    current.getNextWordMeaning().setWord(word);
+	                    current.getNextWordMeaning().setPartOfSpeech(partOfSpeech);
+	                    current.getNextWordMeaning().setMeaning(meaning);
 	                    swapDone = true;
 	                }
 	                current = current.getNextWordMeaning();
@@ -101,18 +109,18 @@ public class LinkedList {
 	        }
 	    	EndTime = System.nanoTime();
 	    }
-		System.out.println("Sorting the linked list took: "+(EndTime - StartTime)+" nanoseconds");
+		System.out.println("Bubble sorting the linked list took: "+(EndTime - StartTime)+" nanoseconds");
 	}
 	
-	public void addToDictionary(String wordMeaning){
+	public void addToDictionary(String word, String partOfSpeech, String meaning){
 		long StartTime = 0;
 		long EndTime = 0;
-		//implements insertion sort
+		
 		if(isFull()){
 			System.out.println("Error - Cannot insert the item");
 		}else{
 			StartTime = System.nanoTime();
-			Node newWordMeaning = new Node(wordMeaning);
+			Node newWordMeaning = new Node(word, partOfSpeech, meaning);
 			Node currPtr = new Node();
 			Node temp = new Node();
 			boolean insert = false;
@@ -120,16 +128,16 @@ public class LinkedList {
 				this.HEAD = newWordMeaning;
 			}
 			else{
-				if(this.HEAD.getWordMeaning().compareTo(wordMeaning)>0){
-					newWordMeaning.setNextWordMeaing(this.HEAD);
+				if(this.HEAD.getWord().compareTo(word)>0){
+					newWordMeaning.setNextWordMeaning(this.HEAD);
 					this.HEAD = newWordMeaning;
 				}else{
 					temp = this.HEAD;
 					currPtr = this.HEAD.getNextWordMeaning();
 					while(currPtr != null){
-						if(temp.getWordMeaning().compareTo(wordMeaning)<0 && currPtr.getWordMeaning().compareTo(wordMeaning)>0){
-							temp.setNextWordMeaing(newWordMeaning);
-							newWordMeaning.setNextWordMeaing(currPtr);
+						if(temp.getWord().compareTo(word)<0 && currPtr.getWord().compareTo(word)>0){
+							temp.setNextWordMeaning(newWordMeaning);
+							newWordMeaning.setNextWordMeaning(currPtr);
 							insert = true;
 							break;
 						}else{
@@ -139,21 +147,12 @@ public class LinkedList {
 					}
 				}
 				if(insert==false){
-						temp.setNextWordMeaing(newWordMeaning);
+						temp.setNextWordMeaning(newWordMeaning);
 				}
 			}
 			length++;
 			EndTime = System.nanoTime();
-			System.out.println("Adding the word '"+wordMeaning.split("\\s")[0]+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds");
-		}
-	}
-	
-	public void addWord(String word, String partOfSpeech, String definition){
-		if(this.locate(word) != -1){
-			System.out.println("Sorry, the word "+word+" already exists!");
-		}else{
-			String dictionaryEntry = word+"\t"+partOfSpeech+"\t"+definition;
-			this.addToDictionary(dictionaryEntry);
+			System.out.println("Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds");
 		}
 	}
 	
@@ -163,11 +162,11 @@ public class LinkedList {
 		Node currentPtr = this.HEAD;
 		StartTime = System.nanoTime();
 		while(currentPtr != null){
-			if(currentPtr.getWordMeaning().split("\\s")[0].equals(searchValue)){
+			if(currentPtr.getWord().equals(searchValue)){
 				int index = this.locate(searchValue);
 				EndTime = System.nanoTime();
 				System.out.println("Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
-				return "\nFound at index: " +Integer.toString(index)+"\n"+currentPtr.getWordMeaning();
+				return "\nFound at index: " +Integer.toString(index)+"\n"+currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning();
 			}
 			currentPtr = currentPtr.getNextWordMeaning();
 		}
@@ -176,7 +175,6 @@ public class LinkedList {
 			return "Not Found";
 	}
 	
-	
 	public int locate(String element){
 		int index = 0;
 		if(isEmpty()){
@@ -184,7 +182,7 @@ public class LinkedList {
 		}else{
 			Node currentPtr = this.HEAD;
 			while(currentPtr != null){
-				if(currentPtr.getWordMeaning().split("\\s")[0].equals(element)){
+				if(currentPtr.getWord().equals(element)){
 					return index;
 				}
 				index++;
@@ -222,7 +220,7 @@ public class LinkedList {
 					String partOfSpeech = in.nextLine();
 					System.out.println("Enter Meaning: ");
 					String meaning = in.nextLine();
-					this.addWord(arr.get(j), partOfSpeech, meaning);
+					this.addToDictionary(arr.get(j), partOfSpeech, meaning);
 				}
 			}
 		}

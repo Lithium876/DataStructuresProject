@@ -1,5 +1,4 @@
 
-
 public class Driver {
 
 	public static void main(String[] args) {
@@ -8,11 +7,11 @@ public class Driver {
 		lList.loadAndSortDataset();
 		
 		lList.bubbleSort();
-		lList.addWord("Paul", "n.", "A good ute");
-		System.out.println(lList.lookUp("Occasional")); 
+		lList.addToDictionary("Paul", "n.", "A good ute");
+		System.out.println(lList.lookUp("Abbreviation")); 
 		System.out.print("\nLength of the list: "+lList.lengthOfList()+"\n");
-		lList.validateSentence("Paul is a good yute");
+	    lList.validateSentence("Paul is a good yute");
 		System.out.println(lList.lookUp("Good")); 
-		//lList.displayDictionary();
+		lList.displayDictionary();
 	}
 }
