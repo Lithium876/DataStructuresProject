@@ -37,6 +37,7 @@ public class LinkedList {
 		}
 		return false;
 	}
+	
 	public void loadDataset(){
 	
 		long StartTime =0;
@@ -162,23 +163,27 @@ public class LinkedList {
 		}
 	}
 	
-	public String lookUp(String searchValue){
+	public void lookUp(String searchValue){
 		long StartTime = 0;
 		long EndTime = 0;
 		Node currentPtr = this.HEAD;
+		boolean found = true;
 		StartTime = System.nanoTime();
+		int index = this.locate(searchValue)-1;
 		while(currentPtr != null){
 			if(currentPtr.getWord().equals(searchValue)){
-				int index = this.locate(searchValue);
+				found = true;
+				index++;
+				System.out.println();
 				EndTime = System.nanoTime();
+				System.out.println("Found at index: " +Integer.toString(index)+"\n"+currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning());
 				System.out.println("Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
-				return "\nFound at index: " +Integer.toString(index)+"\n"+currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning();
 			}
 			currentPtr = currentPtr.getNextWordMeaning();
 		}
-			EndTime = System.nanoTime();
-			System.out.println("Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
-			return "Not Found";
+			if(!found){
+				System.out.println("Not Found");
+			}
 	}
 	
 	public int locate(String element){

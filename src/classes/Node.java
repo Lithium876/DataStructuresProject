@@ -81,4 +81,15 @@ public class Node {
 	public void displayWord(){
 		System.out.println(this.word);
 	}
+	
+	public String displayTree() {
+	      String result = this.word+"\t"+this.partOfSpeech+"\t"+this.meaning;
+	      if (leftSubTree  != null) {
+	    	  result = leftSubTree.displayTree() + "\n" + result;
+	      }
+	      if (rightSubTree != null) {
+	    	  result = result + "\n" + rightSubTree.displayTree();
+	      }
+	      return result;
+	    }
 }

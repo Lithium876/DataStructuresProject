@@ -24,7 +24,14 @@ public class BinarySearchTree {
 		return ROOT;
 	}
 	
-	public void loadAndSortDataset(){
+	public boolean isEmpty(){
+		if (ROOT == null){
+			return true;
+		}
+		return false;
+	}
+	
+	public void loadDataset(){
 		long StartTime =0;
 		long EndTime =0;
 		try{
@@ -56,6 +63,7 @@ public class BinarySearchTree {
 	
 	public void InsertNode(String word, String partOfSpeech, String meaning){
 		
+		word = word.replaceAll("^\\W", "");
 		Node N = new Node(word, partOfSpeech, meaning);
 		Node T;
 		
@@ -85,4 +93,41 @@ public class BinarySearchTree {
 		}
 		length++;
 	}
+	
+	public void lookUp(String searchValue){
+		long StartTime =0;
+		long EndTime =0;
+		boolean found = false;
+		Node currentPtr = this.ROOT; 
+		StartTime = System.nanoTime();
+		while(currentPtr != null){
+			if(currentPtr.getWord().equals(searchValue)){
+				found = true;
+				//index++;
+				System.out.println();
+				EndTime = System.nanoTime();
+				System.out.println("Searching for the word '"+searchValue+"' in the tree took: "+(EndTime - StartTime)+" nanoseconds");
+				System.out.println(currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning());
+			}else if(currentPtr.getWord().compareToIgnoreCase(searchValue) > 0){
+				currentPtr = currentPtr.getLeftSubTree();
+			}else{
+				currentPtr = currentPtr.getRightSubTree();
+			}
+		}
+		if(!found){
+			System.out.println("Not Found!");
+		}
+	}
+	
+	 public void display(){
+		long StartTime =0;
+		long EndTime =0;
+		StartTime = System.nanoTime();
+	    if (ROOT != null){
+	      System.out.println(ROOT.displayTree());
+	      }
+		  EndTime = System.nanoTime();
+		  System.out.println("Displaying all words, part of speech and defintion in the tree took: "+(EndTime - StartTime)+" nanoseconds");
+	    }
+	 
 }
