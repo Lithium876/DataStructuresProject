@@ -11,14 +11,14 @@ public class Driver {
 		BinarySearchTree BST = new BinarySearchTree();
 		
 		BST.loadDataset();
-		lList.loadDataset();
-		lList.bubbleSort();
-		System.out.println("InOreder Traversal");
+		///lList.loadDataset();
+		//lList.bubbleSort();
+		//System.out.println("InOreder Traversal");
 		//BST.InOrderTraversal(BST.getRoot());
 //		System.out.println(BST.lengthOfTree());
 		BST.lookUp("Yoke");
 //		System.out.println();
-//		lList.lookUp("Yoke");
+		//lList.lookUp("Yoke");
 //		System.out.println();
 //		lList.displayDictionary();
 //		System.out.println();

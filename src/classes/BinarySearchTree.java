@@ -73,7 +73,7 @@ public class BinarySearchTree {
 			}else{
 				T = ROOT;
 				while(true){
-					if(N.getWord().compareTo(T.getWord()) < 0){
+					if(N.getWord().compareToIgnoreCase(T.getWord()) < 0){
 						if(T.getLeftSubTree()==null){
 							T.setLeftSubTree(N);
 							break;
@@ -103,11 +103,11 @@ public class BinarySearchTree {
 		while(currentPtr != null){
 			if(currentPtr.getWord().equals(searchValue)){
 				found = true;
-				//index++;
 				System.out.println();
 				EndTime = System.nanoTime();
 				System.out.println("Searching for the word '"+searchValue+"' in the tree took: "+(EndTime - StartTime)+" nanoseconds");
 				System.out.println(currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning());
+				break;
 			}else if(currentPtr.getWord().compareToIgnoreCase(searchValue) > 0){
 				currentPtr = currentPtr.getLeftSubTree();
 			}else{

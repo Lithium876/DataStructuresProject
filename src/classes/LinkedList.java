@@ -134,14 +134,14 @@ public class LinkedList {
 				System.out.println("Sorry! the word '"+newWordMeaning.getWord()+"' already exists");
 			}
 			else{
-				if(this.HEAD.getWord().compareTo(word)>0){
+				if(this.HEAD.getWord().compareToIgnoreCase(word)>0){
 					newWordMeaning.setNextWordMeaning(this.HEAD);
 					this.HEAD = newWordMeaning;
 				}else{
 					temp = this.HEAD;
 					currPtr = this.HEAD.getNextWordMeaning();
 					while(currPtr != null){
-						if(temp.getWord().compareTo(word)<0 && currPtr.getWord().compareTo(word)>0){
+						if(temp.getWord().compareToIgnoreCase(word)<0 && currPtr.getWord().compareToIgnoreCase(word)>0){
 							temp.setNextWordMeaning(newWordMeaning);
 							newWordMeaning.setNextWordMeaning(currPtr);
 							insert = true;
