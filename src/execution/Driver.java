@@ -10,13 +10,17 @@ public class Driver {
 		LinkedList lList = new LinkedList();
 		BinarySearchTree BST = new BinarySearchTree();
 		
-		BST.loadDataset();
-		///lList.loadDataset();
-		//lList.bubbleSort();
+		//BST.loadDataset();
+		lList.loadDataset();
+		lList.bubbleSort();
+		lList.validateSentence("This is a Yoke");
+		lList.lookUp("is");
+		
 		//System.out.println("InOreder Traversal");
 		//BST.InOrderTraversal(BST.getRoot());
 //		System.out.println(BST.lengthOfTree());
-		BST.lookUp("Yoke");
+		//n
+	//BST.lookUp("Yoke");
 //		System.out.println();
 		//lList.lookUp("Yoke");
 //		System.out.println();

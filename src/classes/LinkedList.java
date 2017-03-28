@@ -167,11 +167,11 @@ public class LinkedList {
 		long StartTime = 0;
 		long EndTime = 0;
 		Node currentPtr = this.HEAD;
-		boolean found = true;
+		boolean found = false;
 		StartTime = System.nanoTime();
 		int index = this.locate(searchValue)-1;
 		while(currentPtr != null){
-			if(currentPtr.getWord().equals(searchValue)){
+			if(currentPtr.getWord().compareToIgnoreCase(searchValue)==0){
 				found = true;
 				index++;
 				System.out.println();
@@ -193,7 +193,7 @@ public class LinkedList {
 		}else{
 			Node currentPtr = this.HEAD;
 			while(currentPtr != null){
-				if(currentPtr.getWord().equals(element)){
+				if(currentPtr.getWord().compareToIgnoreCase(element)==0){
 					return index;
 				}
 				index++;
