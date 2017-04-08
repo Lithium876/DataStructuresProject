@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="acP" prefHeight="628.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LinkedList">
+   <children>
+      <Button fx:id="btnClick" layoutX="24.0" layoutY="576.0" mnemonicParsing="false" onAction="#loadAndSortDataset" text="Load Data Set" />
+      <Button fx:id="btnAdd" layoutX="125.0" layoutY="576.0" mnemonicParsing="false" text="Add A Word" />
+      <Button fx:id="btnSearch" layoutX="217.0" layoutY="576.0" mnemonicParsing="false" text="Search for a word" />
+      <Button fx:id="btnLength" layoutX="343.0" layoutY="576.0" mnemonicParsing="false" text="Length of List" />
+      <Button fx:id="btnValidate" layoutX="446.0" layoutY="576.0" mnemonicParsing="false" text="Validate a Sentence" />
+      <Button fx:id="btnSort" layoutX="580.0" layoutY="576.0" mnemonicParsing="false" onAction="#bubbleSort" text="Sort List" />
+      <Button fx:id="btnDisplay" layoutX="656.0" layoutY="576.0" mnemonicParsing="false" onAction="#displayDictionary" text="Display All" />
+      <AnchorPane fx:id="acPLinkedList" layoutX="8.0" layoutY="14.0" prefHeight="555.0" prefWidth="359.0">
+         <children>
+            <Label fx:id="LinkList" layoutX="59.0" layoutY="14.0" prefHeight="25.0" prefWidth="228.0" text="Linked List" />
+            <Label fx:id="tList" layoutX="31.0" layoutY="524.0" text="Time Taken: " />
+            <Label fx:id="LLT" layoutX="110.0" layoutY="524.0" prefHeight="17.0" prefWidth="169.0" />
+            <TextField fx:id="txtLL" layoutX="14.0" layoutY="46.0" prefHeight="468.0" prefWidth="331.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="acPTrees" layoutX="382.0" layoutY="14.0" prefHeight="555.0" prefWidth="367.0">
+         <children>
+            <Label fx:id="Tree" layoutX="64.0" layoutY="14.0" prefHeight="25.0" prefWidth="228.0" text="Binary Tree" />
+            <Label fx:id="tTree" layoutX="50.0" layoutY="524.0" text="Time Taken:" />
+            <Label fx:id="TT" layoutX="132.0" layoutY="524.0" prefHeight="17.0" prefWidth="169.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

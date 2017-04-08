@@ -1,0 +1,214 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#LinkList
+{
+   -fx-font-size: 22px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+   -fx-alignment:center;
+	}
+	
+#txtLL
+{
+	-fx-background-radius:25px;
+	-fx-border-color: blue;
+	-fx-border-radius:25px;
+	-fx-background-color:black;
+	-fx-text-fill:blue;
+	-fx-font-family:"Lucida bright";
+	-fx-font-size:12px;
+}
+#Tree
+{
+   -fx-font-size: 22px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+   -fx-alignment:center;
+}
+#tList
+{
+	-fx-font-size:12px;
+	-fx-font-family:"Lucida bright";
+}
+#tTree
+{
+	-fx-font-size:12px;
+	-fx-font-family:"Lucida bright";
+}
+#LLT
+{
+	-fx-background-color:grey;
+   	-fx-font-size:12px;
+	-fx-font-family:"Lucida bright";
+	-fx-alignment:center;
+    -fx-text-fill:blue;
+}
+#TT
+{
+	-fx-text-fill:blue;
+	-fx-background-color:grey;
+   	-fx-font-size:12px;
+	-fx-font-family:"Lucida bright";
+	-fx-alignment:center;
+}
+
+
+#btnClick
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnClick:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnAdd
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnAdd:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnLength
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnLength:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnSort
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnSort:hover
+{
+    -fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnValidate
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnValidate:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnSearch
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnSearch:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#btnDisplay
+{
+		-fx-background-color:black;
+		-fx-background-radius:50px;
+		-fx-text-fill:blue;
+		-fx-font-size:12px;
+		-fx-border-radius:50px;
+		-fx-font-family:"Lucida bright";
+		-fx-border-color: blue;		
+}
+#btnDisplay:hover
+{
+	-fx-border-radius:12px;
+    -fx-background-color:black; 
+    -fx-cursor:pointer;
+	-fx-text-fill:red;
+	-fx-font-family:"Lucida bright";
+	-fx-border-color: red;
+	-fx-background-radius:50px;
+}
+#acP
+{
+	-fx-background-image:url("BG.jpg");
+}
+#acPLinkedList
+{
+	-fx-background-radius:50px;
+	-fx-border-color: blue;
+	-fx-border-radius:50px;
+	-fx-background-color:black;
+}
+#acPTrees
+{
+	-fx-background-radius:50px;
+	-fx-border-color: blue;
+	-fx-border-radius:50px;
+	-fx-background-color:black;
+}
