@@ -1,6 +1,7 @@
 package classes;
 
-public class Node {
+public class Node 
+{
 	private String word;
 	private String partOfSpeech;
 	private String meaning;
@@ -8,7 +9,8 @@ public class Node {
 	protected Node leftSubTree;
 	protected Node rightSubTree;
 	
-	public Node(){
+	public Node()
+	{
 		this.word = "";
 		this.partOfSpeech = "";
 		this.meaning = "";
@@ -17,7 +19,8 @@ public class Node {
 		this.rightSubTree = null;
 	}
 	
-	public Node(String word, String partOfSpeech, String meaning) {
+	public Node(String word, String partOfSpeech, String meaning) 
+	{
 		this.word = word;
 		this.partOfSpeech = partOfSpeech;
 		this.meaning = meaning;
@@ -26,70 +29,68 @@ public class Node {
 		this.rightSubTree = null;
 	}
 	
-	public String getWord() {
+	public String getWord() 
+	{
 		return word;
 	}
 
-	public void setWord(String word) {
+	public void setWord(String word) 
+	{
 		this.word = word;
 	}
 
-	public String getPartOfSpeech() {
+	public String getPartOfSpeech() 
+	{
 		return partOfSpeech;
 	}
 
-	public void setPartOfSpeech(String partOfSpeech) {
+	public void setPartOfSpeech(String partOfSpeech) 
+	{
 		this.partOfSpeech = partOfSpeech;
 	}
 
-	public String getMeaning() {
+	public String getMeaning() 
+	{
 		return meaning;
 	}
 
-	public void setMeaning(String meaning) {
+	public void setMeaning(String meaning) 
+	{
 		this.meaning = meaning;
 	}
 	
-	public void setRigtSubTree(Node rightSubTree){
+	public void setRightSubTree(Node rightSubTree)
+	{
 		this.rightSubTree = rightSubTree;
 	}
 	
-	public Node getRightSubTree(){
+	public Node getRightSubTree()
+	{
 		return rightSubTree;
 	}
 	
-	public void setLeftSubTree(Node leftSubTree){
+	public void setLeftSubTree(Node leftSubTree)
+	{
 		this.leftSubTree = leftSubTree;
 	}
 	
-	public Node getLeftSubTree(){
+	public Node getLeftSubTree()
+	{
 		return leftSubTree;
 	}
 
-	public Node getNextWordMeaning() {
+	public Node getNextWordMeaning() 
+	{
 		return nextWordMeaning;
 	}
 
-	public void setNextWordMeaning(Node nextWordMeaning) {
+	public void setNextWordMeaning(Node nextWordMeaning) 
+	{
 		this.nextWordMeaning = nextWordMeaning;
 	}
 	
-	public void display(){
-		System.out.println(this.word+"\t"+this.partOfSpeech+"\t"+this.meaning);
+	public void display()
+	{
+		System.out.println(this.word+"\t"+this.partOfSpeech+"\t"+this.meaning); 
 	}
-	
-	public void displayWord(){
-		System.out.println(this.word);
-	}
-	
-	public String displayTree() {
-	      String result = this.word+"\t"+this.partOfSpeech+"\t"+this.meaning;
-	      if (leftSubTree  != null) {
-	    	  result = leftSubTree.displayTree() + "\n" + result;
-	      }
-	      if (rightSubTree != null) {
-	    	  result = result + "\n" + rightSubTree.displayTree();
-	      }
-	      return result;
-	    }
 }
