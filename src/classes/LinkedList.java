@@ -1,79 +1,107 @@
 package classes;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import gui.fileChooser;
 
-public class LinkedList {
-	
+public class LinkedList 
+{
 	private Node HEAD;
 	private int length;
+	private String filePath;
 	
-	public LinkedList(){
+	public LinkedList()
+	{
 		HEAD = null;
 		length = 0;
 	}
 	
 	@SuppressWarnings("unused")
-	public boolean isFull(){
+	public boolean isFull()
+	{
 	    Node new_node = new Node();
-	    if(new_node != null){
+	    if(new_node != null)
+	    {
 	        return false;
 	    }
 	    return true;
 	}
 	
-	public int lengthOfList(){
+	public int lengthOfList()
+	{
 		return length;
 	}
 	
-	public boolean isEmpty(){
-		if (HEAD == null){
+	public boolean isEmpty()
+	{
+		if (HEAD == null)
+		{
 			return true;
 		}
 		return false;
 	}
 	
-	public void loadDataset(){
+	public String getFileName(){
+		return filePath;
+	}
 	
+	public void setFileName(String fileName){
+		this.filePath = fileName;
+	}
+	
+	public String loadDataset()
+	{
 		long StartTime =0;
 		long EndTime =0;
-		try{
+		try
+		{
 			fileChooser file = new fileChooser();
-			FileInputStream fstream = new FileInputStream(file.openFile());
+			FileInputStream fstream = new FileInputStream(file.openFile("Linked List and Binary Search Tree"));
 			StartTime = System.nanoTime();
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
-			while ((strLine = br.readLine()) != null){
+			while ((strLine = br.readLine()) != null)
+			{
 				String words[] = strLine.split("\\t");
 				this.Dictionary(words[0], words[1], words[2]);
 			}
 			in.close();
-		}catch (Exception e){
+		}
+		catch(Exception e)
+		{
 			System.err.println("Error: " + e.getMessage());
 		}
 		EndTime = System.nanoTime();
-		System.out.println("Loading dataset from file to linked list took: "+(EndTime - StartTime)+" nanoseconds");
+		return "Loading dataset from file to linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
-	public void Dictionary(String word, String partOfSpeech, String meaning){
-		if(isFull()){
+	public void Dictionary(String word, String partOfSpeech, String meaning)
+	{
+		if(isFull())
+		{
 			System.out.println("Error - Cannot insert the item");
-		}else{
+		}
+		else
+		{
 			word = word.replaceAll("^\\W", "");
 			Node newWordMeaning = new Node(word, partOfSpeech, meaning );
 			Node temp = new Node();
-			if(isEmpty()){
+			if(isEmpty())
+			{
 				this.HEAD = newWordMeaning;
 			}
-			else{
+			else
+			{
 				temp = this.HEAD;
-			    while ((temp.getNextWordMeaning() != null)) {
+			    while ((temp.getNextWordMeaning() != null)) 
+			    {
 			           temp = temp.getNextWordMeaning();
 			    }
 			    temp.setNextWordMeaning(newWordMeaning);
@@ -82,19 +110,26 @@ public class LinkedList {
 		}
 	}
 	
-	public void bubbleSort() {
+	public String bubbleSort() 
+	{
 		long StartTime = 0;
 		long EndTime = 0;
-		if (isEmpty() || this.HEAD.getNextWordMeaning() == null){
+		if (isEmpty() || this.HEAD.getNextWordMeaning() == null)
+		{
 	        System.out.println("An empty list is already sorted."); 
-		}else {
+		}
+		else 
+		{
 			StartTime = System.nanoTime();
 	        Node current = this.HEAD;
 	        boolean swapDone = true;
-	        while (swapDone) {
+	        while (swapDone) 
+	        {
 	        	swapDone = false;
-	            while (current != null) {
-	            	if(current.getNextWordMeaning() != null && current.getWord().compareToIgnoreCase(current.getNextWordMeaning().getWord()) >0){
+	            while (current != null) 
+	            {
+	            	if(current.getNextWordMeaning() != null && current.getWord().compareToIgnoreCase(current.getNextWordMeaning().getWord()) > 0)
+	            	{
 	                    String word = current.getWord();
 	                    String partOfSpeech = current.getPartOfSpeech();
 	                    String meaning = current.getMeaning();
@@ -112,88 +147,115 @@ public class LinkedList {
 	        }
 	    	EndTime = System.nanoTime();
 	    }
-		System.out.println("Bubble sorting the linked list took: "+(EndTime - StartTime)+" nanoseconds");
+		return "Sorting the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
-	public void addToDictionary(String word, String partOfSpeech, String meaning){
+	public String addToDictionary(String word, String partOfSpeech, String meaning)
+	{
 		long StartTime = 0;
 		long EndTime = 0;
 		
-		if(isFull()){
+	    word = Character.toUpperCase(word.charAt(0)) + word.substring(1);
+		
+		if(isFull())
+		{
 			System.out.println("Error - Cannot insert the item");
-		}else{
+		}
+		else
+		{
 			StartTime = System.nanoTime();
 			Node newWordMeaning = new Node(word, partOfSpeech, meaning);
 			Node currPtr = new Node();
 			Node temp = new Node();
 			boolean insert = false;
-			if(isEmpty()){
+			if(isEmpty())
+			{
 				this.HEAD = newWordMeaning;
 			}
 			if(this.locate(newWordMeaning.getWord()) != -1){
-				System.out.println("Sorry! the word '"+newWordMeaning.getWord()+"' already exists");
+				return "Sorry! the word '"+newWordMeaning.getWord()+"' already exists";
 			}
-			else{
-				if(this.HEAD.getWord().compareToIgnoreCase(word)>0){
+			else
+			{
+				if(this.HEAD.getWord().compareToIgnoreCase(word)>0)
+				{
 					newWordMeaning.setNextWordMeaning(this.HEAD);
 					this.HEAD = newWordMeaning;
-				}else{
+				}
+				else
+				{
 					temp = this.HEAD;
 					currPtr = this.HEAD.getNextWordMeaning();
 					while(currPtr != null){
-						if(temp.getWord().compareToIgnoreCase(word)<0 && currPtr.getWord().compareToIgnoreCase(word)>0){
+						if(temp.getWord().compareToIgnoreCase(word)<0 && currPtr.getWord().compareToIgnoreCase(word)>0)
+						{
 							temp.setNextWordMeaning(newWordMeaning);
 							newWordMeaning.setNextWordMeaning(currPtr);
 							insert = true;
 							break;
-						}else{
+						}
+						else
+						{
 							temp = currPtr;
 							currPtr = currPtr.getNextWordMeaning();
 						}
 					}
 				}
-				if(insert==false){
-						temp.setNextWordMeaning(newWordMeaning);
+				if(insert==false)
+				{
+					temp.setNextWordMeaning(newWordMeaning);
 				}
 				length++;
 				EndTime = System.nanoTime();
-				System.out.println("Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds");
 			}
-			
 		}
+		return "Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
-	public void lookUp(String searchValue){
+	public String lookUp(String searchValue)
+	{
 		long StartTime = 0;
 		long EndTime = 0;
 		Node currentPtr = this.HEAD;
 		boolean found = false;
 		StartTime = System.nanoTime();
 		int index = this.locate(searchValue)-1;
-		while(currentPtr != null){
-			if(currentPtr.getWord().compareToIgnoreCase(searchValue)==0){
+		
+		while(currentPtr != null)
+		{
+			if(currentPtr.getWord().compareToIgnoreCase(searchValue)==0)
+			{
 				found = true;
 				index++;
 				System.out.println();
-				EndTime = System.nanoTime();
+				
 				System.out.println("Found at index: " +Integer.toString(index)+"\n"+currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning());
-				System.out.println("Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
+				
 			}
 			currentPtr = currentPtr.getNextWordMeaning();
 		}
-			if(!found){
-				System.out.println("Not Found");
-			}
+		EndTime = System.nanoTime();
+		if(!found)
+		{
+			return "Not Found";
+		}
+		return "Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
-	public int locate(String element){
+	public int locate(String element)
+	{
 		int index = 0;
-		if(isEmpty()){
+		if(isEmpty())
+		{
 			System.out.println("The list is empty");
-		}else{
+		}
+		else
+		{
 			Node currentPtr = this.HEAD;
-			while(currentPtr != null){
-				if(currentPtr.getWord().compareToIgnoreCase(element)==0){
+			while(currentPtr != null)
+			{
+				if(currentPtr.getWord().compareToIgnoreCase(element)==0)
+				{
 					return index;
 				}
 				index++;
@@ -203,7 +265,8 @@ public class LinkedList {
 		return -1;
 	}
 	
-	public void validateSentence(String sentence){
+	public void validateSentence(String sentence)
+	{
 		long StartTime = 0;
 		long EndTime = 0;
 		ArrayList<String> arr = new ArrayList<String>();
@@ -212,49 +275,56 @@ public class LinkedList {
 		int i;
 		int found;
 		StartTime = System.nanoTime();
-		for(i=0;i<word.length;i++){
-			String capitalized = Character.toUpperCase(word[i].charAt(0)) + word[i].substring(1);
-			found = this.locate(capitalized);
-			if(found==-1){
-				arr.add(capitalized);
+		for(i=0;i<word.length;i++)
+		{
+			found = this.locate(word[i]);
+			if(found==-1)
+			{
+				arr.add(word[i]);
 			}
 		}
 		EndTime = System.nanoTime();
 		System.out.println("Validaing the sentence took (Linked List): "+(EndTime - StartTime)+" nanoseconds");
 		int j;
-		if(arr.size()!=0){
-			for(j=0;j<arr.size();j++){
+		if(arr.size()!=0)
+		{
+			for(j=0;j<arr.size();j++)
+			{
 				System.out.println("'"+arr.get(j)+"' was not found in the dictionary, would you like to add it to the database of words?\n y/n");
 				String respond = in.nextLine();
-				if(respond.equals("y")){
+				if(respond.equals("y"))
+				{
 					System.out.println("Enter part of speech: ");
 					String partOfSpeech = in.nextLine();
 					System.out.println("Enter Meaning: ");
 					String meaning = in.nextLine();
 					this.addToDictionary(arr.get(j), partOfSpeech, meaning);
 				}
+				else
+				{
+					System.out.println("'"+arr.get(j)+"' was ignored..");
+				}
 			}
 		}
 	}
 	
-	public void displayWordsInDictionary(){
-		Node currNode = HEAD;
-		while(currNode != null){
-			currNode.displayWord();
-			currNode = currNode.getNextWordMeaning();
-		}
-	}
-	
-	public void displayDictionary(){
+	public String displayDictionary()
+	{
 		long StartTime = 0;
 		long EndTime = 0;
 		Node currNode = HEAD;
+		
 		StartTime = System.nanoTime();
-		while(currNode != null){
-			currNode.display();
-			currNode = currNode.getNextWordMeaning();
+		try{
+			while(currNode != null)
+			{
+				currNode.display();
+				currNode = currNode.getNextWordMeaning();
+			}
+		}catch(Exception e){
+			System.out.println(e);
 		}
 		EndTime = System.nanoTime();
-		System.out.println("Displaying all words, part of speech and defintion in the linked list took: "+(EndTime - StartTime)+" nanoseconds");
+		return "Displaying words in the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 }
