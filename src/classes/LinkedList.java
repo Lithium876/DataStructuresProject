@@ -313,6 +313,9 @@ public class LinkedList
 		String word[] = sentence.split("[\\W]"); //splitting the sentence on every whitespace and punctuation
 		int i;
 		int found;
+		long extraStartTime = 0;
+		long extraEndTime = 0;
+		long extraTime;
 		StartTime = System.nanoTime();
 		for(i=0;i<word.length;i++)
 		{
@@ -321,8 +324,16 @@ public class LinkedList
 			{
 				arr.add(word[i]);
 			}
+			else
+			{	
+				extraStartTime = System.nanoTime();
+				JOptionPane.showMessageDialog(null, "'"+word[i]+"'Already exists in dictionary!","Word Exists", JOptionPane.INFORMATION_MESSAGE);
+				extraEndTime = System.nanoTime();
+			}
 		}
 		EndTime = System.nanoTime();
+		extraTime = extraEndTime - extraStartTime;
+		EndTime = EndTime - extraTime;
 		int j;
 		//Traverses the array that contains the words not found in the dataset and prompts the user
 		//on wheather to add or discard the word
@@ -342,7 +353,7 @@ public class LinkedList
 				} 
 				else 
 				{
-				    continue;
+					continue;
 				}
 			}
 		}
