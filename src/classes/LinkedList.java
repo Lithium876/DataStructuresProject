@@ -1,27 +1,40 @@
+/*Lomar Lilly 1401375
+ * Darryl Brown 1503803
+ */
+
 package classes;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import gui.fileChooser;
+import gui.mainWindow;
 
 public class LinkedList 
 {
+	//Class Variables
 	private Node HEAD;
 	private int length;
 	private String filePath;
 	
+	//Default Constructor
 	public LinkedList()
 	{
 		HEAD = null;
 		length = 0;
 	}
 	
+	//Check if list is full
 	@SuppressWarnings("unused")
 	public boolean isFull()
 	{
@@ -33,11 +46,13 @@ public class LinkedList
 	    return true;
 	}
 	
+	//get the length of list
 	public int lengthOfList()
 	{
 		return length;
 	}
 	
+	//check if the list is empty
 	public boolean isEmpty()
 	{
 		if (HEAD == null)
@@ -47,26 +62,31 @@ public class LinkedList
 		return false;
 	}
 	
+	//Get dataset file path
 	public String getFileName(){
 		return filePath;
 	}
 	
+	//set dataset file path
 	public void setFileName(String fileName){
 		this.filePath = fileName;
 	}
 	
+	//Loads and parse the dataset from file
 	public String loadDataset()
 	{
 		long StartTime =0;
 		long EndTime =0;
 		try
 		{
+			//loads file chooser
 			fileChooser file = new fileChooser();
 			FileInputStream fstream = new FileInputStream(file.openFile("Linked List and Binary Search Tree"));
 			StartTime = System.nanoTime();
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
+			//reading from the file line by line
 			while ((strLine = br.readLine()) != null)
 			{
 				String words[] = strLine.split("\\t");
@@ -82,16 +102,19 @@ public class LinkedList
 		return "Loading dataset from file to linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
+	//The linked List with the alias Dictionary
 	public void Dictionary(String word, String partOfSpeech, String meaning)
 	{
+		//check if the linked list is full
 		if(isFull())
 		{
 			System.out.println("Error - Cannot insert the item");
 		}
 		else
+		//If list not full
 		{
-			word = word.replaceAll("^\\W", "");
-			Node newWordMeaning = new Node(word, partOfSpeech, meaning );
+			word = word.replaceAll("\\W", ""); //Remove all symbols on the word
+			Node newWordMeaning = new Node(word, partOfSpeech, meaning ); 
 			Node temp = new Node();
 			if(isEmpty())
 			{
@@ -110,6 +133,7 @@ public class LinkedList
 		}
 	}
 	
+	//Sorting the linked list with bubble sort
 	public String bubbleSort() 
 	{
 		long StartTime = 0;
@@ -147,22 +171,27 @@ public class LinkedList
 	        }
 	    	EndTime = System.nanoTime();
 	    }
+		this.displayDictionary();
 		return "Sorting the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
+	//Adding data to the linked list
 	public String addToDictionary(String word, String partOfSpeech, String meaning)
 	{
 		long StartTime = 0;
 		long EndTime = 0;
 		
-	    word = Character.toUpperCase(word.charAt(0)) + word.substring(1);
+	    word = Character.toUpperCase(word.charAt(0)) + word.substring(1);//Capitalizes the first letter in the word
 		
+	    //check if the list is full
 		if(isFull())
 		{
 			System.out.println("Error - Cannot insert the item");
 		}
 		else
+			//if list is not full
 		{
+		
 			StartTime = System.nanoTime();
 			Node newWordMeaning = new Node(word, partOfSpeech, meaning);
 			Node currPtr = new Node();
@@ -173,10 +202,19 @@ public class LinkedList
 				this.HEAD = newWordMeaning;
 			}
 			if(this.locate(newWordMeaning.getWord()) != -1){
+				System.out.println(newWordMeaning.getMeaning());
 				return "Sorry! the word '"+newWordMeaning.getWord()+"' already exists";
+				
 			}
 			else
 			{
+				try{
+					BufferedWriter writer = new BufferedWriter(new FileWriter(fileChooser.getFilePath(),true));
+					writer.write(newWordMeaning.getWord()+"\t"+newWordMeaning.getPartOfSpeech()+"\t"+newWordMeaning.getMeaning());
+					writer.close();
+				}catch(Exception e){
+					System.out.println(e);
+				}
 				if(this.HEAD.getWord().compareToIgnoreCase(word)>0)
 				{
 					newWordMeaning.setNextWordMeaning(this.HEAD);
@@ -212,6 +250,7 @@ public class LinkedList
 		return "Adding the word '"+word+"' to the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
+	//Search the list for a search value given by the user
 	public String lookUp(String searchValue)
 	{
 		long StartTime = 0;
@@ -223,18 +262,16 @@ public class LinkedList
 		
 		while(currentPtr != null)
 		{
-			if(currentPtr.getWord().compareToIgnoreCase(searchValue)==0)
+			if(currentPtr.getWord().compareToIgnoreCase(searchValue)==0) //if the search value matches the word at the node's current pointer 
 			{
 				found = true;
 				index++;
-				System.out.println();
-				
 				System.out.println("Found at index: " +Integer.toString(index)+"\n"+currentPtr.getWord()+"\t"+currentPtr.getPartOfSpeech()+"\t"+currentPtr.getMeaning());
-				
 			}
 			currentPtr = currentPtr.getNextWordMeaning();
 		}
 		EndTime = System.nanoTime();
+		//if search value not found
 		if(!found)
 		{
 			return "Not Found";
@@ -242,9 +279,11 @@ public class LinkedList
 		return "Searching for the word '"+searchValue+"' in the linked list took: "+(EndTime - StartTime)+" nanoseconds";
 	}
 	
+	//finds a search value and return's it's index
 	public int locate(String element)
 	{
 		int index = 0;
+		//check the linked list is empty
 		if(isEmpty())
 		{
 			System.out.println("The list is empty");
@@ -254,7 +293,7 @@ public class LinkedList
 			Node currentPtr = this.HEAD;
 			while(currentPtr != null)
 			{
-				if(currentPtr.getWord().compareToIgnoreCase(element)==0)
+				if(currentPtr.getWord().compareToIgnoreCase(element)==0) //if the search value matches the word at the node's current pointer
 				{
 					return index;
 				}
@@ -262,52 +301,55 @@ public class LinkedList
 				currentPtr = currentPtr.getNextWordMeaning();
 			}
 		}
-		return -1;
+		return -1; //returned if search element not found
 	}
 	
-	public void validateSentence(String sentence)
+	//Takes a sentences from the user and checks if each word in the sentence is in the dataset loaded in the program
+	public String validateSentence(String sentence)
 	{
 		long StartTime = 0;
 		long EndTime = 0;
-		ArrayList<String> arr = new ArrayList<String>();
-		String word[] = sentence.split("[\\W]");
-		Scanner in = new Scanner(System.in);
+		ArrayList<String> arr = new ArrayList<String>(); //A string array list that will store the words found in the sentence that are not in the dataset loaded
+		String word[] = sentence.split("[\\W]"); //splitting the sentence on every whitespace and punctuation
 		int i;
 		int found;
 		StartTime = System.nanoTime();
 		for(i=0;i<word.length;i++)
 		{
 			found = this.locate(word[i]);
-			if(found==-1)
+			if(found==-1) //if word was found
 			{
 				arr.add(word[i]);
 			}
 		}
 		EndTime = System.nanoTime();
-		System.out.println("Validaing the sentence took (Linked List): "+(EndTime - StartTime)+" nanoseconds");
 		int j;
+		//Traverses the array that contains the words not found in the dataset and prompts the user
+		//on wheather to add or discard the word
 		if(arr.size()!=0)
 		{
 			for(j=0;j<arr.size();j++)
 			{
-				System.out.println("'"+arr.get(j)+"' was not found in the dictionary, would you like to add it to the database of words?\n y/n");
-				String respond = in.nextLine();
-				if(respond.equals("y"))
+				if (JOptionPane.showConfirmDialog(null, "'"+arr.get(j)+"' was not found in the dictionary.\n Would you like to add it to the database of words?", "Word not found in Linked List!",
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
 				{
-					System.out.println("Enter part of speech: ");
-					String partOfSpeech = in.nextLine();
-					System.out.println("Enter Meaning: ");
-					String meaning = in.nextLine();
-					this.addToDictionary(arr.get(j), partOfSpeech, meaning);
-				}
-				else
+
+					String partOfSpeech = JOptionPane.showInputDialog(null, "Enter part of speech", "Adding the word: '"+arr.get(j)+"'to Linked List", JOptionPane.QUESTION_MESSAGE);
+					String meaning = JOptionPane.showInputDialog(null, "Enter Meaning", "Adding the word: '"+arr.get(j)+"'", JOptionPane.QUESTION_MESSAGE);
+					
+					String str = this.addToDictionary(arr.get(j), partOfSpeech, meaning);
+					JOptionPane.showMessageDialog(null, str, "Added "+arr.get(j)+" to Linked List", JOptionPane.INFORMATION_MESSAGE);
+				} 
+				else 
 				{
-					System.out.println("'"+arr.get(j)+"' was ignored..");
+				    continue;
 				}
 			}
 		}
+		return "Validaing the sentence took (Linked List): "+(EndTime - StartTime)+" nanoseconds";		
 	}
 	
+	//Displays the dataset
 	public String displayDictionary()
 	{
 		long StartTime = 0;
