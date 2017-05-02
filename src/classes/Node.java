@@ -1,3 +1,7 @@
+/*Lomar Lilly 1401375
+ * Darryl Brown 1503803
+ */
+
 package classes;
 
 public class Node 
