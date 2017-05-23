@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 
 import classes.LinkedList;
 
-public class fileChooser {
+public class FileChooser {
 	
 	private static String filePath;
 	
