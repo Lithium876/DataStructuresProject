@@ -4,13 +4,13 @@
 
 package execution;
 
-import gui.mainWindow;
+import gui.MainWindow;
 
 public class Driver {
 
 	public static void main(String[] args) 
 	{
 		//Starts the GUI
-		mainWindow.main(null); 
+		MainWindow.main(null); 
 	}
 }

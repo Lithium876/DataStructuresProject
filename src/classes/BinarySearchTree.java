@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import gui.fileChooser;
+import gui.FileChooser;
 
 public class BinarySearchTree 
 {
@@ -73,7 +73,7 @@ public class BinarySearchTree
 		try
 		{
 			//loads file chooser
-			FileInputStream fstream = new FileInputStream(fileChooser.getFilePath());
+			FileInputStream fstream = new FileInputStream(FileChooser.getFilePath());
 			StartTime = System.nanoTime();
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));

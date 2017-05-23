@@ -17,7 +17,7 @@ public class FileChooser {
 	}
 	
 	public void setFilePath(String filePath){
-		fileChooser.filePath = filePath;
+		FileChooser.filePath = filePath;
 	}
 	
 	public String openFile(String DataStructure){
@@ -25,7 +25,10 @@ public class FileChooser {
 		JFileChooser fc = new JFileChooser();
 		try
 		{
-			fc.setCurrentDirectory(new java.io.File("user.home"));
+			//REMEMBER TO UNCOMMENT THIS PART!!!!
+			//fc.setCurrentDirectory(new java.io.File("user.home"));
+			//REMEMBER TO TAKE THIS PART OUT!
+			fc.setCurrentDirectory(new java.io.File("C:\\Users\\Admin\\Downloads"));
 			fc.setDialogTitle("Import Dictionary Data for "+DataStructure);
 			fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 			if(fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION){

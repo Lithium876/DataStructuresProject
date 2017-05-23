@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import gui.fileChooser;
-import gui.mainWindow;
+import gui.FileChooser;
+import gui.MainWindow;
 
 public class LinkedList 
 {
@@ -80,7 +80,7 @@ public class LinkedList
 		try
 		{
 			//loads file chooser
-			fileChooser file = new fileChooser();
+			FileChooser file = new FileChooser();
 			FileInputStream fstream = new FileInputStream(file.openFile("Linked List and Binary Search Tree"));
 			StartTime = System.nanoTime();
 			DataInputStream in = new DataInputStream(fstream);
@@ -209,7 +209,7 @@ public class LinkedList
 			else
 			{
 				try{
-					BufferedWriter writer = new BufferedWriter(new FileWriter(fileChooser.getFilePath(),true));
+					BufferedWriter writer = new BufferedWriter(new FileWriter(FileChooser.getFilePath(),true));
 					writer.write(newWordMeaning.getWord()+"\t"+newWordMeaning.getPartOfSpeech()+"\t"+newWordMeaning.getMeaning());
 					writer.close();
 				}catch(Exception e){
